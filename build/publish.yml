@@ -24,14 +24,15 @@ stages:
       - pwsh: |
           $publishModuleParams = @{
               Path = "$(Pipeline.Workspace)\dropModule\Microsoft.VisualStudio.DSC"
-              NuGetApiKey = "$(VSSetup-Powershell-API-Key)"
+              ApiKey = "$(VSSetup-Powershell-API-Key)"
               Verbose = $true
-              Force = $true
+              Confirm = $false
           }
-
-          Install-Module PowerShellGet -Force -AllowClobber
  
-          Publish-Module @publishModuleParams
+          Install-Module -Name Microsoft.PowerShell.PSResourceGet -Repository PSGallery -Force
+
+          Publish-PsResource @publishModuleParams
+
         displayName: 'Upload module to PowerShell Gallery'
 
       - pwsh: |
