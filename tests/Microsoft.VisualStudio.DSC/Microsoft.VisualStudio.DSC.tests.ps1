@@ -25,4 +25,6 @@ Describe 'List available DSC resources' {
         $availableDSCResources.count | Should -Be 1
         $availableDSCResources | Where-Object { $expectedDSCResources -notcontains $_ } | Should -BeNullOrEmpty
     }
+
+    # TODO: add more tests
 }
